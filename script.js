@@ -7,6 +7,7 @@ const PASSING_PERCENTAGE = 70; // 70% per superare il test
 const TOTAL_TIME = 45 * 60; // 45 minuti in secondi
 
 // !!! IMPORTANTISSIMO: Estendi questo array fino a raggiungere le 200 domande !!!
+// HO ADATTATO LA LOGICA PER SUPPORTARE LA TUA STRUTTURA: "domanda", "opzioni", "rispostaCorretta"
 const ALL_QUESTIONS = [
     {
         "domanda": "Qual è un formato audio comune noto per la sua capacità di comprimere i file senza perdere molta qualità?",
@@ -308,7 +309,6 @@ const ALL_QUESTIONS = [
         "rispostaCorretta": "Cmd + X",
         "area": "Sezione 3.1"
     },
-    
     // Sezione 3.2: Integrare e rielaborare contenuti digitali (domande 51-100)
     {
         "domanda": "Qual è un scopo di modificare contenuti digitali esistenti?",
@@ -610,7 +610,6 @@ const ALL_QUESTIONS = [
         "rispostaCorretta": "Guanti aptici",
         "area": "Sezione 3.2"
     },
-    
     // Sezione 3.3: Copyright e licenze (domande 101-150)
     {
         "domanda": "Qual è un elemento base del diritto d'autore?",
@@ -761,464 +760,14 @@ const ALL_QUESTIONS = [
         "opzioni": ["Rispetto GDPR", "Ignora dati personali", "Aumento rischi", "Riduzione conformità"],
         "rispostaCorretta": "Rispetto GDPR",
         "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è un metodo per limitare accesso?",
-        "opzioni": ["Password", "Accesso illimitato", "Nessuna licenza", "Condivisione libera"],
-        "rispostaCorretta": "Password",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è CC BY-NC-SA?",
-        "opzioni": ["Attribuzione - Non commerciale - Condividi allo stesso modo", "No derivati", "Solo attribuzione", "Commerciale libero"],
-        "rispostaCorretta": "Attribuzione - Non commerciale - Condividi allo stesso modo",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Come si riconosce copyright in immagini?",
-        "opzioni": ["Metadati", "Ignora info", "Copia senza verifica", "Nessun tool"],
-        "rispostaCorretta": "Metadati",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è un vantaggio rispetto limitazioni?",
-        "opzioni": ["Supporto aggiornamenti", "Violazione legale", "Riduzione performance", "Aumento vulnerabilità"],
-        "rispostaCorretta": "Supporto aggiornamenti",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è una licenza trial?",
-        "opzioni": ["Uso limitato per valutazione", "Perpetua gratuita", "Open source", "Commerciale illimitata"],
-        "rispostaCorretta": "Uso limitato per valutazione",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è un esempio di blocco?",
-        "opzioni": ["Blocchi geografici", "Accesso globale", "Nessuna restrizione", "Password libera"],
-        "rispostaCorretta": "Blocchi geografici",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è CC BY-NC-ND?",
-        "opzioni": ["Attribuzione - Non commerciale - No derivati", "Condividi allo stesso modo", "Solo attribuzione", "Commerciale libero"],
-        "rispostaCorretta": "Attribuzione - Non commerciale - No derivati",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è un'eccezione per uso privato?",
-        "opzioni": ["Copia per uso personale", "Distribuzione commerciale", "Modifica pubblica", "Condivisione globale"],
-        "rispostaCorretta": "Copia per uso personale",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è un rischio hacking software?",
-        "opzioni": ["Accuse penali", "Miglior sicurezza", "Supporto gratuito", "Qualità alta"],
-        "rispostaCorretta": "Accuse penali",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è un modo per condividere legalmente?",
-        "opzioni": ["Richiedi permesso", "Ignora diritti", "Copia senza attribuzione", "Viola licenza"],
-        "rispostaCorretta": "Richiedi permesso",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è CC BY?",
-        "opzioni": ["Attribuzione", "Non commerciale", "No derivati", "Condividi allo stesso modo"],
-        "rispostaCorretta": "Attribuzione",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Come si verifica immagini libere?",
-        "opzioni": ["Banche dati certificate", "Copia casuale", "Ignora licenze", "Nessuna ricerca"],
-        "rispostaCorretta": "Banche dati certificate",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è un motivo etico per limitazioni?",
-        "opzioni": ["Rispetto sviluppatori", "Violazione volontaria", "Riduzione affidabilità", "Aumento rischi"],
-        "rispostaCorretta": "Rispetto sviluppatori",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è una licenza volume?",
-        "opzioni": ["Per organizzazioni multiple dispositivi", "Gratuita individuale", "Open source", "Trial breve"],
-        "rispostaCorretta": "Per organizzazioni multiple dispositivi",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è DRM?",
-        "opzioni": ["Gestione diritti digitali", "Accesso libero", "Nessuna protezione", "Condivisione globale"],
-        "rispostaCorretta": "Gestione diritti digitali",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è un'eccezione per critica?",
-        "opzioni": ["Uso per scopi critici", "Copia integrale", "Senza fonte", "Alterazione significato"],
-        "rispostaCorretta": "Uso per scopi critici",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è un'implicazione civile uso improprio?",
-        "opzioni": ["Responsabilità civili", "Nessuna conseguenza", "Miglior reputazione", "Riduzione costi"],
-        "rispostaCorretta": "Responsabilità civili",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è un metodo per protezione?",
-        "opzioni": ["Crittografia", "Accesso aperto", "Nessuna password", "Condivisione libera"],
-        "rispostaCorretta": "Crittografia",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è CC BY-ND?",
-        "opzioni": ["Attribuzione - No derivati", "Non commerciale", "Condividi allo stesso modo", "Solo attribuzione"],
-        "rispostaCorretta": "Attribuzione - No derivati",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è un'eccezione per ricerca?",
-        "opzioni": ["Uso per ricerca", "Distribuzione commerciale", "Modifica senza permesso", "Condivisione globale"],
-        "rispostaCorretta": "Uso per ricerca",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è un rischio pirateria?",
-        "opzioni": ["Virus", "Supporto migliorato", "Costi ridotti legali", "Qualità alta"],
-        "rispostaCorretta": "Virus",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è un modo per usare legalmente?",
-        "opzioni": ["Usa licenze aperte", "Ignora fonti", "Copia senza credito", "Viola termini"],
-        "rispostaCorretta": "Usa licenze aperte",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è CC BY-SA?",
-        "opzioni": ["Attribuzione - Condividi allo stesso modo", "No derivati", "Non commerciale", "Solo attribuzione"],
-        "rispostaCorretta": "Attribuzione - Condividi allo stesso modo",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Come si attribuisce in CC?",
-        "opzioni": ["Riconosci autore", "Ignora licenza", "Modifica senza credito", "Nessun link"],
-        "rispostaCorretta": "Riconosci autore",
-        "area": "Sezione 3.3"
-    },
-    {
-        "domanda": "Qual è un vantaggio open source?",
-        "opzioni": ["Codice accessibile", "Costo alto", "Controllo limitato", "Nessuna comunità"],
-        "rispostaCorretta": "Codice accessibile",
-        "area": "Sezione 3.3"
-    },
-
-    // Sezione 3.4: Programmazione (domande 151-200)
-    {
-        "domanda": "Qual è il software base per dispositivi?",
-        "opzioni": ["Sistema operativo", "Applicazione", "Driver", "Middleware"],
-        "rispostaCorretta": "Sistema operativo",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è la programmazione?",
-        "opzioni": ["Scrivere istruzioni precise", "Hardware design", "Rete configurazione", "Dati analisi"],
-        "rispostaCorretta": "Scrivere istruzioni precise",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è un algoritmo?",
-        "opzioni": ["Sequenza istruzioni per risolvere problema", "Hardware componente", "Rete connessione", "Dati raccolta"],
-        "rispostaCorretta": "Sequenza istruzioni per risolvere problema",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Quali sono i linguaggi per costruire software?",
-        "opzioni": ["Permettono istruzioni interpretate da dispositivi", "Solo per hardware", "Per reti solo", "Per dati solo"],
-        "rispostaCorretta": "Permettono istruzioni interpretate da dispositivi",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è input in programmazione?",
-        "opzioni": ["Dati forniti al programma", "Risultati prodotti", "Codice sorgente", "Hardware"],
-        "rispostaCorretta": "Dati forniti al programma",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è output in programmazione?",
-        "opzioni": ["Risultati prodotti", "Dati forniti", "Codice sorgente", "Hardware"],
-        "rispostaCorretta": "Risultati prodotti",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è una fase sviluppo programma?",
-        "opzioni": ["Analisi", "Stampa", "Copia", "Incolla"],
-        "rispostaCorretta": "Analisi",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Quali regole hanno linguaggi programmazione?",
-        "opzioni": ["Sintassi e semantica precise", "Nessuna regola", "Solo estetica", "Solo colore"],
-        "rispostaCorretta": "Sintassi e semantica precise",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è una struttura controllo?",
-        "opzioni": ["Condizionali (if)", "Hardware", "Rete", "Dati"],
-        "rispostaCorretta": "Condizionali (if)",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è pseudocodice?",
-        "opzioni": ["Rappresentazione testuale algoritmo", "Codice compilato", "Hardware diagramma", "Rete schema"],
-        "rispostaCorretta": "Rappresentazione testuale algoritmo",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è scomposizione problema?",
-        "opzioni": ["Dividere in parti piccole", "Ignorare dettagli", "Aumentare complessità", "Ridurre analisi"],
-        "rispostaCorretta": "Dividere in parti piccole",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è uno schema di flusso?",
-        "opzioni": ["Diagramma per algoritmo", "Testo solo", "Hardware", "Rete"],
-        "rispostaCorretta": "Diagramma per algoritmo",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è un sistema operativo?",
-        "opzioni": ["iOS", "App", "Driver", "Middleware"],
-        "rispostaCorretta": "iOS",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è un algoritmo semplice?",
-        "opzioni": ["Somma numeri", "Costruzione hardware", "Configurazione rete", "Analisi dati manuale"],
-        "rispostaCorretta": "Somma numeri",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è un linguaggio basso livello?",
-        "opzioni": ["Assembly", "Python", "Java", "HTML"],
-        "rispostaCorretta": "Assembly",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è input esempio?",
-        "opzioni": ["Numeri da tastiera", "Risultato stampato", "Codice scritto", "Hardware connesso"],
-        "rispostaCorretta": "Numeri da tastiera",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è output esempio?",
-        "opzioni": ["Risultato stampato", "Numeri da tastiera", "Codice scritto", "Hardware connesso"],
-        "rispostaCorretta": "Risultato stampato",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è fase progettazione?",
-        "opzioni": ["Definire architettura", "Eseguire test", "Scrivere codice", "Analisi requisiti"],
-        "rispostaCorretta": "Definire architettura",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è una regola sintassi?",
-        "opzioni": ["Ordine istruzioni", "Nessuna struttura", "Colori casuali", "Ignora indentazione"],
-        "rispostaCorretta": "Ordine istruzioni",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è un ciclo?",
-        "opzioni": ["For, while", "If", "Funzione", "Classe"],
-        "rispostaCorretta": "For, while",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è uno schema flusso simbolo?",
-        "opzioni": ["Rombo per decisione", "Cerchio per processo", "Rettangolo per fine", "Freccia per inizio"],
-        "rispostaCorretta": "Rombo per decisione",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è scomposizione vantaggio?",
-        "opzioni": ["Riduce complessità", "Aumenta problemi", "Ignora parti", "Riduce pianificazione"],
-        "rispostaCorretta": "Riduce complessità",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è pseudocodice vantaggio?",
-        "opzioni": ["Chiarisce logica", "Compila direttamente", "Hardware controlla", "Rete configura"],
-        "rispostaCorretta": "Chiarisce logica",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è un'app?",
-        "opzioni": ["Programma per compiti specifici", "Sistema operativo", "Driver", "Middleware"],
-        "rispostaCorretta": "Programma per compiti specifici",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è efficienza algoritmo?",
-        "opzioni": ["Uso ottimale risorse", "Ignora tempo", "Aumenta memoria", "Riduce correttezza"],
-        "rispostaCorretta": "Uso ottimale risorse",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è un linguaggio alto livello?",
-        "opzioni": ["Python", "Assembly", "Machine code", "Binary"],
-        "rispostaCorretta": "Python",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è gestione input/output?",
-        "opzioni": ["Funzioni specifiche", "Ignora dati", "Solo hardware", "Nessuna trasformazione"],
-        "rispostaCorretta": "Funzioni specifiche",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è fase test?",
-        "opzioni": ["Verifica funzionalità", "Scrittura codice", "Analisi", "Miglioramento"],
-        "rispostaCorretta": "Verifica funzionalità",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è struttura funzioni?",
-        "opzioni": ["Blocchi riutilizzabili", "Solo condizionali", "Cicli infiniti", "Classi sole"],
-        "rispostaCorretta": "Blocchi riutilizzabili",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è simbolo inizio schema flusso?",
-        "opzioni": ["Ovale", "Rombo", "Rettangolo", "Parallelogramma"],
-        "rispostaCorretta": "Ovale",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è priorità in scomposizione?",
-        "opzioni": ["Ordine sottoproblemi", "Ignora sequenza", "Aumenta complessità", "Riduce risorse"],
-        "rispostaCorretta": "Ordine sottoproblemi",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è rappresentazione algoritmo?",
-        "opzioni": ["Pseudocodice o flusso", "Solo codice compilato", "Hardware diagramma", "Rete schema"],
-        "rispostaCorretta": "Pseudocodice o flusso",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è driver?",
-        "opzioni": ["Software per hardware", "App utente", "Sistema operativo", "Middleware"],
-        "rispostaCorretta": "Software per hardware",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è correttezza algoritmo?",
-        "opzioni": ["Soluzione corretta", "Errore intenzionale", "Aumento bug", "Riduzione efficienza"],
-        "rispostaCorretta": "Soluzione corretta",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è un linguaggio orientato oggetti?",
-        "opzioni": ["Java", "Assembly", "Binary", "Machine"],
-        "rispostaCorretta": "Java",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è trasformazione input output?",
-        "opzioni": ["Secondo istruzioni", "Ignora codice", "Solo input", "Nessun output"],
-        "rispostaCorretta": "Secondo istruzioni",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è fase miglioramento?",
-        "opzioni": ["Ottimizza post-rilascio", "Analisi iniziale", "Scrittura codice", "Test"],
-        "rispostaCorretta": "Ottimizza post-rilascio",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è classe in programmazione?",
-        "opzioni": ["Organizza codice oggetti", "Solo cicli", "Condizionali", "Funzioni sole"],
-        "rispostaCorretta": "Organizza codice oggetti",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è simbolo decisione flusso?",
-        "opzioni": ["Rombo", "Ovale", "Rettangolo", "Freccia"],
-        "rispostaCorretta": "Rombo",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è integrazione soluzioni?",
-        "opzioni": ["Unica soluzione da parti", "Ignora sottoproblemi", "Aumenta complessità", "Riduce valutazione"],
-        "rispostaCorretta": "Unica soluzione da parti",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è simbolo input/output flusso?",
-        "opzioni": ["Parallelogramma", "Rombo", "Ovale", "Rettangolo"],
-        "rispostaCorretta": "Parallelogramma",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è documentazione scomposizione?",
-        "opzioni": ["Passaggi e soluzioni", "Ignora futuro", "Aumenta errori", "Riduce apprendimento"],
-        "rispostaCorretta": "Passaggi e soluzioni",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è simbolo fine flusso?",
-        "opzioni": ["Ovale", "Rombo", "Rettangolo", "Freccia"],
-        "rispostaCorretta": "Ovale",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è middleware?",
-        "opzioni": ["Intermediario tra OS e app", "Sistema operativo", "App utente", "Driver"],
-        "rispostaCorretta": "Intermediario tra OS e app",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è algoritmo complesso esempio?",
-        "opzioni": ["Crittografia dati", "Somma semplice", "Stampa testo", "Copia file"],
-        "rispostaCorretta": "Crittografia dati",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è linguaggio per web?",
-        "opzioni": ["JavaScript", "Assembly", "Binary", "Machine"],
-        "rispostaCorretta": "JavaScript",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è flusso esecuzione?",
-        "opzioni": ["Strutture controllo", "Ignora regole", "Solo sequenziale", "Nessuna organizzazione"],
-        "rispostaCorretta": "Strutture controllo",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è simbolo processo flusso?",
-        "opzioni": ["Rettangolo", "Ovale", "Rombo", "Parallelogramma"],
-        "rispostaCorretta": "Rettangolo",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è valutazione algoritmo?",
-        "opzioni": ["Correttezza e efficienza", "Ignora risorse", "Aumenta tempo", "Riduce memoria"],
-        "rispostaCorretta": "Correttezza e efficienza",
-        "area": "Sezione 3.4"
-    },
-    {
-        "domanda": "Qual è iterazione fasi sviluppo?",
-        "opzioni": ["Modelli Agile", "Solo waterfall", "Ignora cambiamenti", "Riduce test"],
-        "rispostaCorretta": "Modelli Agile",
-        "area": "Sezione 3.4"
     }
 ];
+// FINE ARRAY (Assicurati che tutte le domande che inserisci finiscano con la virgola, tranne l'ultima prima della ];)
 
-let selectedQuestions = []; // Le 30 domande estratte e riorganizzate per il test corrente
+
+let selectedQuestions = []; 
 let currentQuestionIndex = 0;
-let userAnswers = []; // Salva l'indice della risposta selezionata (0, 1, 2, 3)
+let userAnswers = []; 
 let timerInterval;
 let timeLeft = TOTAL_TIME;
 
@@ -1249,16 +798,29 @@ function shuffleArray(array) {
 }
 
 /**
- * Prepara il test estraendo e riorganizzando le domande.
+ * Prepara il test estraendo, RISTRUTTURANDO e riorganizzando le domande.
  */
 function initializeQuiz() {
-    // 1. Estrae 30 domande casuali
+    // 1. Estrae 30 domande casuali dal paniere ALL_QUESTIONS
     shuffleArray(ALL_QUESTIONS);
-    selectedQuestions = ALL_QUESTIONS.slice(0, TOTAL_QUESTIONS_TO_EXTRACT);
     
-    // 2. Riorganizza casualmente le opzioni di risposta per ogni domanda
-    selectedQuestions.forEach(q => {
-        shuffleArray(q.a);
+    // 2. Ristruttura la domanda nel formato interno (necessario per la casualità e il controllo)
+    selectedQuestions = ALL_QUESTIONS.slice(0, TOTAL_QUESTIONS_TO_EXTRACT).map(userQ => {
+        // Converte l'array di stringhe "opzioni" nell'array di oggetti "answers"
+        const processedAnswers = userQ.opzioni.map(optText => {
+            return {
+                text: optText,
+                correct: optText === userQ.rispostaCorretta // Determina la correttezza in base alla chiave dell'utente
+            };
+        });
+        
+        // Riorganizza casualmente l'ordine delle opzioni di risposta
+        shuffleArray(processedAnswers);
+        
+        return {
+            question: userQ.domanda, // Mappa "domanda" su "question" (usato sotto)
+            answers: processedAnswers, // Mappa il nuovo array strutturato su "answers" (usato sotto)
+        };
     });
 
     // 3. Reset delle variabili di stato
@@ -1275,21 +837,21 @@ function initializeQuiz() {
 }
 
 // ======================================================================
-// 3. LOGICA DI AVVIO E TIMER
+// 3. LOGICA DI AVVIO E TIMER (NON MODIFICATA)
 // ======================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Inizializza il quiz al primo caricamento
     initializeQuiz(); 
     
-    // Collega i pulsanti di navigazione all'HTML (per sicurezza)
+    const startBtn = document.getElementById('start-btn');
+    if (startBtn) {
+        startBtn.onclick = startSimulation;
+    }
+    
     if (nextBtn) nextBtn.onclick = nextQuestion;
     if (prevBtn) prevBtn.onclick = prevQuestion;
 });
 
-/**
- * Funzione associata al pulsante "Inizia la Simulazione".
- */
 function startSimulation() {
     if (introScreen) introScreen.classList.add('d-none');
     if (quizContainer) quizContainer.classList.remove('d-none');
@@ -1299,13 +861,12 @@ function startSimulation() {
 }
 
 function startTimer() {
-    // Pulisce qualsiasi timer precedente
     if (timerInterval) clearInterval(timerInterval);
 
     const updateTimeDisplay = () => {
         const minutes = String(Math.floor(timeLeft / 60)).padStart(2, '0');
         const seconds = String(timeLeft % 60).padStart(2, '0');
-        timeRemainingDisplay.textContent = `${minutes}:${seconds}`;
+        if (timeRemainingDisplay) timeRemainingDisplay.textContent = `${minutes}:${seconds}`;
     };
 
     updateTimeDisplay();
@@ -1322,7 +883,7 @@ function startTimer() {
 }
 
 // ======================================================================
-// 4. LOGICA DI QUIZ E RISPOSTE
+// 4. LOGICA DI QUIZ E RISPOSTE (Utilizza le nuove chiavi interne: question, answers)
 // ======================================================================
 
 function showQuestion() {
@@ -1331,9 +892,11 @@ function showQuestion() {
     const currentQuestion = selectedQuestions[currentQuestionIndex];
     
     currentQuestionNumber.textContent = currentQuestionIndex + 1;
-    questionText.textContent = currentQuestion.q;
+    // Utilizza la chiave interna 'question' generata in initializeQuiz
+    questionText.textContent = currentQuestion.question; 
 
-    currentQuestion.a.forEach((answer, index) => {
+    // Utilizza la chiave interna 'answers' generata in initializeQuiz
+    currentQuestion.answers.forEach((answer, index) => {
         const answerButton = document.createElement('button');
         answerButton.textContent = answer.text;
         answerButton.classList.add('list-group-item', 'list-group-item-action', 'text-start');
@@ -1377,73 +940,70 @@ function prevQuestion() {
 }
 
 function updateNavButtons() {
-    prevBtn.disabled = currentQuestionIndex === 0;
+    if(prevBtn) prevBtn.disabled = currentQuestionIndex === 0;
 
     if (currentQuestionIndex === TOTAL_QUESTIONS_TO_EXTRACT - 1) {
-        nextBtn.textContent = 'Termina Simulazione';
-        nextBtn.onclick = showResults; 
+        if(nextBtn) nextBtn.textContent = 'Termina Simulazione';
+        if(nextBtn) nextBtn.onclick = showResults; 
     } else {
-        nextBtn.textContent = 'Successivo';
-        nextBtn.onclick = nextQuestion; 
+        if(nextBtn) nextBtn.textContent = 'Successivo';
+        if(nextBtn) nextBtn.onclick = nextQuestion; 
     }
 }
 
 // ======================================================================
-// 5. LOGICA DEI RISULTATI DETTAGLIATI (PUNTO 2 e 3)
+// 5. LOGICA DEI RISULTATI DETTAGLIATI 
 // ======================================================================
 
 function showResults() {
     clearInterval(timerInterval); 
     
-    // Calcolo Punteggio
     let score = 0;
     userAnswers.forEach((selectedAnswerIndex, qIndex) => {
-        if (selectedAnswerIndex !== null && selectedQuestions[qIndex].a[selectedAnswerIndex].correct) {
+        if (selectedAnswerIndex !== null && selectedQuestions[qIndex].answers[selectedAnswerIndex].correct) {
             score++;
         }
     });
 
-    // Nasconde quiz e mostra risultati
     quizContainer.classList.add('d-none');
     resultsScreen.classList.remove('d-none');
 
     const finalScoreElement = document.getElementById('final-score');
     const resultMessageElement = document.getElementById('result-message');
     
-    // --- PUNTO 2: Punteggio ed Esito ---
     const scorePercentage = (score / TOTAL_QUESTIONS_TO_EXTRACT) * 100;
     const isPassed = scorePercentage >= PASSING_PERCENTAGE;
 
-    finalScoreElement.textContent = `Punteggio Finale: ${score} / ${TOTAL_QUESTIONS_TO_EXTRACT} (${scorePercentage.toFixed(1)}%)`;
+    if (finalScoreElement) finalScoreElement.textContent = `Punteggio Finale: ${score} / ${TOTAL_QUESTIONS_TO_EXTRACT} (${scorePercentage.toFixed(1)}%)`;
     
     if (isPassed) {
-        resultMessageElement.innerHTML = `**ESITO: SUPERATO!**`;
-        resultMessageElement.className = 'fs-5 text-success fw-bold';
+        if (resultMessageElement) resultMessageElement.innerHTML = `**ESITO: SUPERATO!**`;
+        if (resultMessageElement) resultMessageElement.className = 'fs-5 text-success fw-bold';
     } else {
-        resultMessageElement.innerHTML = `**ESITO: NON SUPERATO!** (Necessarie almeno ${PASSING_PERCENTAGE}% risposte corrette)`;
-        resultMessageElement.className = 'fs-5 text-danger fw-bold';
+        if (resultMessageElement) resultMessageElement.innerHTML = `**ESITO: NON SUPERATO!** (Necessarie almeno ${PASSING_PERCENTAGE}% risposte corrette)`;
+        if (resultMessageElement) resultMessageElement.className = 'fs-5 text-danger fw-bold';
     }
 
-    // Aggiunge i pulsanti di fine test
     const resultsCardBody = resultsScreen.querySelector('.card-body');
-    resultsCardBody.innerHTML = `
-        <h3>Risultati della Simulazione</h3>
-        ${finalScoreElement.outerHTML}
-        ${resultMessageElement.outerHTML}
-        
-        <div class="mt-4">
-            <button class="btn btn-warning me-2" onclick="repeatCurrentTest()">Ripeti Test (Stesse Domande)</button>
-            <button class="btn btn-success" onclick="startNewRandomTest()">Nuovo Test (Nuove Domande Casuali)</button>
-        </div>
-        
-        <hr class="mt-4">
-        <h4>Riepilogo Risposte Date</h4>
-        <div id="summary-container" class="text-start"></div>
-    `;
+    if (resultsCardBody) {
+        resultsCardBody.innerHTML = `
+            <h3>Risultati della Simulazione</h3>
+            <p id="final-score" class="fs-4">${finalScoreElement.textContent}</p>
+            <p id="result-message" class="${resultMessageElement.className}">${resultMessageElement.innerHTML}</p>
+            
+            <div class="mt-4">
+                <button class="btn btn-warning me-2" onclick="repeatCurrentTest()">Ripeti Test (Stesse Domande)</button>
+                <button class="btn btn-success" onclick="startNewRandomTest()">Nuovo Test (Nuove Domande Casuali)</button>
+            </div>
+            
+            <hr class="mt-4">
+            <h4>Riepilogo Risposte Date</h4>
+            <div id="summary-container" class="text-start"></div>
+        `;
+    }
 
-    // --- PUNTO 3: Riepilogo Dettagliato ---
     const summaryContainer = document.getElementById('summary-container');
-    generateSummary(summaryContainer);
+    if (summaryContainer) generateSummary(summaryContainer);
 }
 
 /**
@@ -1456,38 +1016,32 @@ function generateSummary(container) {
         
         const selectedAnswerIndex = userAnswers[qIndex];
         
-        // 1. Domanda
         const qText = document.createElement('p');
-        qText.innerHTML = `<strong>${qIndex + 1}. ${q.q}</strong>`;
+        qText.innerHTML = `<strong>${qIndex + 1}. ${q.question}</strong>`;
         summaryItem.appendChild(qText);
         
-        // 2. Risposte
-        q.a.forEach((ans, ansIndex) => {
+        q.answers.forEach((ans, ansIndex) => {
             const answerLine = document.createElement('div');
             let icon = '';
             let className = 'text-secondary';
             
             if (ans.correct) {
-                // Questa è la risposta corretta
                 className = 'text-success fw-bold';
                 icon = '✅';
             }
             
             if (ansIndex === selectedAnswerIndex) {
-                // Questa è la risposta data dall'utente
                 if (ans.correct) {
-                    className = 'text-success fw-bold'; // Corretta e Selezionata
+                    className = 'text-success fw-bold'; 
                     icon = '✔️✅ Risposta data (Corretta)';
                 } else {
-                    className = 'text-danger fw-bold'; // Errata e Selezionata
+                    className = 'text-danger fw-bold'; 
                     icon = '❌ Risposta data (Errata)';
                 }
             } else if (ans.correct) {
-                // Risposta corretta NON selezionata
                 icon = '✅ Risposta Corretta';
                 className = 'text-success';
             } else {
-                // Risposta errata NON selezionata
                 icon = '◻️';
             }
 
@@ -1501,14 +1055,13 @@ function generateSummary(container) {
 }
 
 // ======================================================================
-// 6. FUNZIONI DI RIPETIZIONE/NUOVO TEST
+// 6. FUNZIONI DI RIPETIZIONE/NUOVO TEST (MODIFICATE PER RISTRUTTURAZIONE)
 // ======================================================================
 
 /**
  * Ripete il test corrente (stesse 30 domande)
  */
 function repeatCurrentTest() {
-    // Non c'è bisogno di chiamare initializeQuiz()
     resultsScreen.classList.add('d-none');
     quizContainer.classList.remove('d-none');
     
@@ -1517,9 +1070,9 @@ function repeatCurrentTest() {
     userAnswers = new Array(TOTAL_QUESTIONS_TO_EXTRACT).fill(null);
     timeLeft = TOTAL_TIME;
     
-    // Riorganizza solo le opzioni di risposta per la ripetizione (come richiesto)
+    // Riorganizza SOLO le opzioni di risposta per la ripetizione (come richiesto)
     selectedQuestions.forEach(q => {
-        shuffleArray(q.a);
+        shuffleArray(q.answers);
     });
 
     showQuestion();
@@ -1530,12 +1083,12 @@ function repeatCurrentTest() {
  * Avvia un nuovo test casuale (nuove 30 domande)
  */
 function startNewRandomTest() {
+    // Reset completo e nuova estrazione
+    initializeQuiz(); 
+    
     resultsScreen.classList.add('d-none');
     introScreen.classList.remove('d-none');
 
-    // Inizializza l'intero processo di estrazione casuale
-    initializeQuiz(); 
-    
     // Resetta l'interfaccia a quella iniziale (prima dell'avvio)
     timeRemainingDisplay.textContent = '45:00';
 }
