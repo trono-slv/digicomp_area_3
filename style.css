@@ -1,6 +1,6 @@
 /* Stile base del corpo della pagina */
 body {
-    background-color: #f8f9fa; /* Sfondo grigio chiaro */
+    background-color: #f8f9fa; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -27,7 +27,7 @@ header h2 {
     opacity: 0.9;
 }
 
-/* Card principali (Introduzione, Quiz, Risultati) */
+/* Card principali */
 .card {
     border: none;
     border-radius: 10px;
@@ -53,7 +53,7 @@ header h2 {
     border-radius: 5px;
     border: 1px solid #dee2e6;
     transition: background-color 0.2s, border-color 0.2s;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
 }
 
 #answers-container .list-group-item:hover {
@@ -73,15 +73,16 @@ header h2 {
 .alert {
     font-weight: 600;
     border: none;
+    text-align: center;
 }
 
 .alert-info {
-    background-color: #cce5ff; /* Sfondo azzurro chiaro */
+    background-color: #cce5ff; 
     color: #004085;
 }
 
 .alert-danger {
-    background-color: #f8d7da; /* Sfondo rosso chiaro */
+    background-color: #f8d7da; 
     color: #721c24;
 }
 
