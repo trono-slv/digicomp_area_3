@@ -1,4 +1,17 @@
 // ====================================================================
+// VARIABILI GLOBALI E CONFIGURAZIONE
+// ====================================================================
+
+const NUM_DOMANDE_QUIZ = 30; // Numero di domande da estrarre
+const TEMPO_MASSIMO = 45 * 60; // Tempo in secondi (45 minuti)
+
+// Associazione degli elementi HTML tramite ID
+const quizArea = document.getElementById('quiz-area');
+const resultsArea = document.getElementById('results-area');
+const startScreen = document.getElementById('start-screen');
+const headerTimer = document.getElementById('timer-box');
+const headerCounter = document.getElementById('question-counter');
+// ====================================================================
 // 1. ARRAY DELLE DOMANDE (Paniere Completo)
 // 200 Domande totali - Sezioni 3.1, 3.2, 3.3, 3.4
 // ====================================================================
