@@ -1,22 +1,13 @@
-// ====================================================================
-// VARIABILI GLOBALI E CONFIGURAZIONE
-// ====================================================================
+// ======================================================================
+// 1. CONFIGURAZIONE E PANIERI DOMANDE (DA ESPANDERE A 200)
+// ======================================================================
 
-const NUM_DOMANDE_QUIZ = 30; // Numero di domande da estrarre
-const TEMPO_MASSIMO = 45 * 60; // Tempo in secondi (45 minuti)
+const TOTAL_QUESTIONS_TO_EXTRACT = 30;
+const PASSING_PERCENTAGE = 70; // 70% per superare il test
+const TOTAL_TIME = 45 * 60; // 45 minuti in secondi
 
-// Associazione degli elementi HTML tramite ID
-const quizArea = document.getElementById('quiz-area');
-const resultsArea = document.getElementById('results-area');
-const startScreen = document.getElementById('start-screen');
-const headerTimer = document.getElementById('timer-box');
-const headerCounter = document.getElementById('question-counter');
-// ====================================================================
-// 1. ARRAY DELLE DOMANDE (Paniere Completo)
-// 200 Domande totali - Sezioni 3.1, 3.2, 3.3, 3.4
-// ====================================================================
-let paniereCompleto = [
-    // Sezione 3.1: Sviluppare contenuti digitali (domande 1-50)
+// !!! IMPORTANTISSIMO: Estendi questo array fino a raggiungere le 200 domande !!!
+const ALL_QUESTIONS = [
     {
         "domanda": "Qual è un formato audio comune noto per la sua capacità di comprimere i file senza perdere molta qualità?",
         "opzioni": ["WAV", "MP3", "FLAC", "AAC"],
@@ -1225,194 +1216,326 @@ let paniereCompleto = [
     }
 ];
 
-// ====================================================================
-// 2. LOGICA DEL QUIZ (NON MODIFICARE SE NON NECESSARIO)
-// ====================================================================
-
-// Variabili di stato
-// Puoi cambiare il numero di domande per la simulazione qui:
-const NUMERO_DOMANDE_QUIZ = 30; 
-let domandeSelezionate = [];
-let domandaCorrenteIndice = 0;
-let punteggio = 0;
-let quizInCorso = false;
-let tempoRimanente = 45 * 60; // 45 minuti in secondi
+let selectedQuestions = []; // Le 30 domande estratte e riorganizzate per il test corrente
+let currentQuestionIndex = 0;
+let userAnswers = []; // Salva l'indice della risposta selezionata (0, 1, 2, 3)
 let timerInterval;
+let timeLeft = TOTAL_TIME;
 
-// Riferimenti DOM
+// ======================================================================
+// 2. Mappatura e Funzioni Utilità
+// ======================================================================
+
+const introScreen = document.getElementById('intro-screen');
 const quizContainer = document.getElementById('quiz-container');
-const risultatiContainer = document.getElementById('risultati-container');
-const domandaElement = document.getElementById('domanda');
-const risposteContainer = document.getElementById('risposte-container');
-const statoDomandaElement = document.getElementById('stato-domanda');
-const pulsanteInizia = document.getElementById('pulsante-inizia');
-const timerElement = document.getElementById('timer');
-const risultatoFinaleElement = document.getElementById('risultato-finale');
-const scoreFinaleElement = document.getElementById('score-finale');
-const pulsanteRestart = document.getElementById('pulsante-restart');
-
-// --- Funzioni di utilità ---
+const resultsScreen = document.getElementById('results-screen');
+const questionText = document.getElementById('question-text');
+const answersContainer = document.getElementById('answers-container');
+const currentQuestionNumber = document.getElementById('current-question-number');
+const timeRemainingDisplay = document.getElementById('time-remaining');
+const nextBtn = document.getElementById('next-btn');
+const prevBtn = document.getElementById('prev-btn');
+const totalQuestionsDisplay = document.getElementById('total-questions');
+const totalQuestionsIntroDisplay = document.getElementById('total-questions-intro');
 
 /**
- * Implementa l'algoritmo Fisher-Yates per mescolare un array (per le opzioni).
- * @param {Array} array - L'array da mescolare.
+ * Funzione per mescolare un array (algoritmo Fisher-Yates).
  */
 function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    // Scegli un elemento casuale da i a 0
-    const j = Math.floor(Math.random() * (i + 1));
-    // Scambia l'elemento corrente con quello casuale
-    [array[i], array[j]] = [array[j], array[i]];
-  }
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
 }
 
 /**
- * Seleziona casualmente N domande dal paniere completo e le mescola.
- * @param {Array} paniere - L'array completo delle domande.
- * @param {number} n - Il numero di domande da selezionare.
- * @returns {Array} L'array di N domande selezionate e mescolate.
+ * Prepara il test estraendo e riorganizzando le domande.
  */
-function selezionaDomande(paniere, n) {
-    if (paniere.length < n) return paniere; // Se ci sono meno domande di N, usa tutte
-
-    // 1. Copia l'array e mescolalo
-    let shuffledPaniere = [...paniere];
-    shuffleArray(shuffledPaniere);
-
-    // 2. Prendi le prime N domande
-    return shuffledPaniere.slice(0, n);
-}
-
-// --- Funzioni di Logica del Quiz ---
-
-function initQuiz() {
-    if (paniereCompleto.length === 0) {
-        alert("Attenzione: Il paniere di domande è vuoto o non caricato.");
-        return;
-    }
-
-    // Nascondi il pulsante Inizia e i risultati
-    pulsanteInizia.style.display = 'none';
-    risultatiContainer.style.display = 'none';
-    quizContainer.style.display = 'block';
-
-    // Inizializza variabili di stato
-    domandaCorrenteIndice = 0;
-    punteggio = 0;
-    quizInCorso = true;
-    tempoRimanente = 45 * 60; // Reset timer
-
-    // Seleziona e mescola le domande per il quiz
-    domandeSelezionate = selezionaDomande(paniereCompleto, NUMERO_DOMANDE_QUIZ);
-
-    // Avvia il timer
-    clearInterval(timerInterval);
-    timerInterval = setInterval(aggiornaTimer, 1000);
-
-    // Carica la prima domanda
-    caricaDomanda();
-}
-
-function aggiornaTimer() {
-    if (tempoRimanente <= 0) {
-        fineQuiz();
-        return;
-    }
-    tempoRimanente--;
-
-    const minuti = Math.floor(tempoRimanente / 60);
-    const secondi = tempoRimanente % 60;
-    timerElement.textContent = `${minuti.toString().padStart(2, '0')}:${secondi.toString().padStart(2, '0')}`;
-}
-
-function caricaDomanda() {
-    if (domandaCorrenteIndice >= domandeSelezionate.length) {
-        fineQuiz();
-        return;
-    }
-
-    const domanda = domandeSelezionate[domandaCorrenteIndice];
+function initializeQuiz() {
+    // 1. Estrae 30 domande casuali
+    shuffleArray(ALL_QUESTIONS);
+    selectedQuestions = ALL_QUESTIONS.slice(0, TOTAL_QUESTIONS_TO_EXTRACT);
     
-    // Aggiorna lo stato della domanda (es. 1/30)
-    statoDomandaElement.textContent = `Domanda: ${domandaCorrenteIndice + 1} / ${domandeSelezionate.length}`;
-
-    // Mostra il testo della domanda
-    domandaElement.textContent = domanda.domanda;
-
-    // Svuota il contenitore delle risposte precedenti
-    risposteContainer.innerHTML = '';
-
-    // --- Mescolamento delle Opzioni ---
-    const opzioniMescolate = [...domanda.opzioni]; // Clona l'array
-    shuffleArray(opzioniMescolate); // Mescola il clone
-
-    // Crea i pulsanti di risposta
-    opzioniMescolate.forEach(opzione => {
-        const pulsante = document.createElement('button');
-        pulsante.textContent = opzione;
-        pulsante.classList.add('btn', 'btn-risposta');
-        pulsante.onclick = () => controllaRisposta(opzione);
-        risposteContainer.appendChild(pulsante);
+    // 2. Riorganizza casualmente le opzioni di risposta per ogni domanda
+    selectedQuestions.forEach(q => {
+        shuffleArray(q.a);
     });
+
+    // 3. Reset delle variabili di stato
+    currentQuestionIndex = 0;
+    userAnswers = new Array(TOTAL_QUESTIONS_TO_EXTRACT).fill(null);
+    timeLeft = TOTAL_TIME;
+    
+    // 4. Aggiorna i contatori nel DOM
+    totalQuestionsDisplay.textContent = TOTAL_QUESTIONS_TO_EXTRACT;
+    totalQuestionsIntroDisplay.textContent = TOTAL_QUESTIONS_TO_EXTRACT;
+
+    // Assicura che i contenitori dei risultati siano nascosti
+    if (resultsScreen) resultsScreen.classList.add('d-none');
 }
 
-function controllaRisposta(rispostaSelezionata) {
-    if (!quizInCorso) return;
+// ======================================================================
+// 3. LOGICA DI AVVIO E TIMER
+// ======================================================================
 
-    const domanda = domandeSelezionate[domandaCorrenteIndice];
-    const corretta = rispostaSelezionata === domanda.rispostaCorretta;
+document.addEventListener('DOMContentLoaded', () => {
+    // Inizializza il quiz al primo caricamento
+    initializeQuiz(); 
+    
+    // Collega i pulsanti di navigazione all'HTML (per sicurezza)
+    if (nextBtn) nextBtn.onclick = nextQuestion;
+    if (prevBtn) prevBtn.onclick = prevQuestion;
+});
 
-    // Aggiorna il punteggio
-    if (corretta) {
-        punteggio++;
+/**
+ * Funzione associata al pulsante "Inizia la Simulazione".
+ */
+function startSimulation() {
+    if (introScreen) introScreen.classList.add('d-none');
+    if (quizContainer) quizContainer.classList.remove('d-none');
+
+    showQuestion();
+    startTimer();
+}
+
+function startTimer() {
+    // Pulisce qualsiasi timer precedente
+    if (timerInterval) clearInterval(timerInterval);
+
+    const updateTimeDisplay = () => {
+        const minutes = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+        const seconds = String(timeLeft % 60).padStart(2, '0');
+        timeRemainingDisplay.textContent = `${minutes}:${seconds}`;
+    };
+
+    updateTimeDisplay();
+
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimeDisplay();
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            showResults(); 
+        }
+    }, 1000);
+}
+
+// ======================================================================
+// 4. LOGICA DI QUIZ E RISPOSTE
+// ======================================================================
+
+function showQuestion() {
+    answersContainer.innerHTML = '';
+    
+    const currentQuestion = selectedQuestions[currentQuestionIndex];
+    
+    currentQuestionNumber.textContent = currentQuestionIndex + 1;
+    questionText.textContent = currentQuestion.q;
+
+    currentQuestion.a.forEach((answer, index) => {
+        const answerButton = document.createElement('button');
+        answerButton.textContent = answer.text;
+        answerButton.classList.add('list-group-item', 'list-group-item-action', 'text-start');
+        
+        answerButton.addEventListener('click', () => selectAnswer(index, answerButton));
+
+        // Rievidenzia la risposta selezionata
+        if (userAnswers[currentQuestionIndex] === index) {
+            answerButton.classList.add('active');
+        }
+        
+        answersContainer.appendChild(answerButton);
+    });
+    
+    updateNavButtons();
+}
+
+function selectAnswer(answerIndex, selectedButton) {
+    Array.from(answersContainer.children).forEach(button => {
+        button.classList.remove('active');
+    });
+
+    selectedButton.classList.add('active');
+    userAnswers[currentQuestionIndex] = answerIndex;
+}
+
+function nextQuestion() {
+    if (currentQuestionIndex < TOTAL_QUESTIONS_TO_EXTRACT - 1) {
+        currentQuestionIndex++;
+        showQuestion();
+    } else if (currentQuestionIndex === TOTAL_QUESTIONS_TO_EXTRACT - 1) {
+        showResults();
     }
+}
 
-    // Disabilita tutti i pulsanti per impedire più click
-    Array.from(risposteContainer.children).forEach(btn => {
-        btn.disabled = true;
-        // Evidenzia la risposta corretta (e la scelta dell'utente)
-        if (btn.textContent === domanda.rispostaCorretta) {
-            btn.classList.add('corretta');
-        } else if (btn.textContent === rispostaSelezionata && !corretta) {
-            btn.classList.add('errata');
+function prevQuestion() {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        showQuestion();
+    }
+}
+
+function updateNavButtons() {
+    prevBtn.disabled = currentQuestionIndex === 0;
+
+    if (currentQuestionIndex === TOTAL_QUESTIONS_TO_EXTRACT - 1) {
+        nextBtn.textContent = 'Termina Simulazione';
+        nextBtn.onclick = showResults; 
+    } else {
+        nextBtn.textContent = 'Successivo';
+        nextBtn.onclick = nextQuestion; 
+    }
+}
+
+// ======================================================================
+// 5. LOGICA DEI RISULTATI DETTAGLIATI (PUNTO 2 e 3)
+// ======================================================================
+
+function showResults() {
+    clearInterval(timerInterval); 
+    
+    // Calcolo Punteggio
+    let score = 0;
+    userAnswers.forEach((selectedAnswerIndex, qIndex) => {
+        if (selectedAnswerIndex !== null && selectedQuestions[qIndex].a[selectedAnswerIndex].correct) {
+            score++;
         }
     });
 
-    // Passa alla prossima domanda dopo un breve ritardo
-    setTimeout(() => {
-        domandaCorrenteIndice++;
-        caricaDomanda();
-    }, 500); // 0.5 secondi di ritardo per vedere l'evidenziazione
+    // Nasconde quiz e mostra risultati
+    quizContainer.classList.add('d-none');
+    resultsScreen.classList.remove('d-none');
+
+    const finalScoreElement = document.getElementById('final-score');
+    const resultMessageElement = document.getElementById('result-message');
+    
+    // --- PUNTO 2: Punteggio ed Esito ---
+    const scorePercentage = (score / TOTAL_QUESTIONS_TO_EXTRACT) * 100;
+    const isPassed = scorePercentage >= PASSING_PERCENTAGE;
+
+    finalScoreElement.textContent = `Punteggio Finale: ${score} / ${TOTAL_QUESTIONS_TO_EXTRACT} (${scorePercentage.toFixed(1)}%)`;
+    
+    if (isPassed) {
+        resultMessageElement.innerHTML = `**ESITO: SUPERATO!**`;
+        resultMessageElement.className = 'fs-5 text-success fw-bold';
+    } else {
+        resultMessageElement.innerHTML = `**ESITO: NON SUPERATO!** (Necessarie almeno ${PASSING_PERCENTAGE}% risposte corrette)`;
+        resultMessageElement.className = 'fs-5 text-danger fw-bold';
+    }
+
+    // Aggiunge i pulsanti di fine test
+    const resultsCardBody = resultsScreen.querySelector('.card-body');
+    resultsCardBody.innerHTML = `
+        <h3>Risultati della Simulazione</h3>
+        ${finalScoreElement.outerHTML}
+        ${resultMessageElement.outerHTML}
+        
+        <div class="mt-4">
+            <button class="btn btn-warning me-2" onclick="repeatCurrentTest()">Ripeti Test (Stesse Domande)</button>
+            <button class="btn btn-success" onclick="startNewRandomTest()">Nuovo Test (Nuove Domande Casuali)</button>
+        </div>
+        
+        <hr class="mt-4">
+        <h4>Riepilogo Risposte Date</h4>
+        <div id="summary-container" class="text-start"></div>
+    `;
+
+    // --- PUNTO 3: Riepilogo Dettagliato ---
+    const summaryContainer = document.getElementById('summary-container');
+    generateSummary(summaryContainer);
 }
 
-function fineQuiz() {
-    clearInterval(timerInterval);
-    quizInCorso = false;
+/**
+ * Genera il riepilogo con risposte date e correzioni.
+ */
+function generateSummary(container) {
+    selectedQuestions.forEach((q, qIndex) => {
+        const summaryItem = document.createElement('div');
+        summaryItem.classList.add('mb-3', 'p-3', 'border', 'rounded');
+        
+        const selectedAnswerIndex = userAnswers[qIndex];
+        
+        // 1. Domanda
+        const qText = document.createElement('p');
+        qText.innerHTML = `<strong>${qIndex + 1}. ${q.q}</strong>`;
+        summaryItem.appendChild(qText);
+        
+        // 2. Risposte
+        q.a.forEach((ans, ansIndex) => {
+            const answerLine = document.createElement('div');
+            let icon = '';
+            let className = 'text-secondary';
+            
+            if (ans.correct) {
+                // Questa è la risposta corretta
+                className = 'text-success fw-bold';
+                icon = '✅';
+            }
+            
+            if (ansIndex === selectedAnswerIndex) {
+                // Questa è la risposta data dall'utente
+                if (ans.correct) {
+                    className = 'text-success fw-bold'; // Corretta e Selezionata
+                    icon = '✔️✅ Risposta data (Corretta)';
+                } else {
+                    className = 'text-danger fw-bold'; // Errata e Selezionata
+                    icon = '❌ Risposta data (Errata)';
+                }
+            } else if (ans.correct) {
+                // Risposta corretta NON selezionata
+                icon = '✅ Risposta Corretta';
+                className = 'text-success';
+            } else {
+                // Risposta errata NON selezionata
+                icon = '◻️';
+            }
 
-    // Calcola il risultato (es. idoneo se > 75%)
-    const percentuale = (punteggio / domandeSelezionate.length) * 100;
-    const esito = percentuale >= 75 ? 'IDONEO' : 'NON IDONEO';
-    const coloreEsito = percentuale >= 75 ? 'text-success' : 'text-danger';
+            answerLine.className = className;
+            answerLine.innerHTML = `${icon} ${ans.text}`;
+            summaryItem.appendChild(answerLine);
+        });
 
-    // Nascondi il quiz e mostra i risultati
-    quizContainer.style.display = 'none';
-    risultatiContainer.style.display = 'block';
-
-    // Aggiorna il testo dei risultati
-    risultatoFinaleElement.className = coloreEsito;
-    risultatoFinaleElement.textContent = `Risultato: ${esito}`;
-    scoreFinaleElement.textContent = `Punteggio: ${punteggio} / ${domandeSelezionate.length} (${percentuale.toFixed(1)}%)`;
+        container.appendChild(summaryItem);
+    });
 }
 
-// --- Event Listeners ---
+// ======================================================================
+// 6. FUNZIONI DI RIPETIZIONE/NUOVO TEST
+// ======================================================================
 
-pulsanteInizia.addEventListener('click', initQuiz);
-pulsanteRestart.addEventListener('click', initQuiz);
+/**
+ * Ripete il test corrente (stesse 30 domande)
+ */
+function repeatCurrentTest() {
+    // Non c'è bisogno di chiamare initializeQuiz()
+    resultsScreen.classList.add('d-none');
+    quizContainer.classList.remove('d-none');
+    
+    // Reset solo variabili di stato
+    currentQuestionIndex = 0;
+    userAnswers = new Array(TOTAL_QUESTIONS_TO_EXTRACT).fill(null);
+    timeLeft = TOTAL_TIME;
+    
+    // Riorganizza solo le opzioni di risposta per la ripetizione (come richiesto)
+    selectedQuestions.forEach(q => {
+        shuffleArray(q.a);
+    });
 
-// Imposta lo stato iniziale
-window.onload = function() {
-    quizContainer.style.display = 'none';
-    risultatiContainer.style.display = 'none';
-    pulsanteInizia.style.display = 'block';
-    timerElement.textContent = '45:00'; // Tempo iniziale
-};
+    showQuestion();
+    startTimer();
+}
+
+/**
+ * Avvia un nuovo test casuale (nuove 30 domande)
+ */
+function startNewRandomTest() {
+    resultsScreen.classList.add('d-none');
+    introScreen.classList.remove('d-none');
+
+    // Inizializza l'intero processo di estrazione casuale
+    initializeQuiz(); 
+    
+    // Resetta l'interfaccia a quella iniziale (prima dell'avvio)
+    timeRemainingDisplay.textContent = '45:00';
+}
