@@ -760,7 +760,288 @@ const ALL_QUESTIONS = [
         "opzioni": ["Rispetto GDPR", "Ignora dati personali", "Aumento rischi", "Riduzione conformità"],
         "rispostaCorretta": "Rispetto GDPR",
         "area": "Sezione 3.3"
-    }
+    },
+    {
+    "domanda": "Qual è un formato audio comune noto per la sua capacità di comprimere i file senza perdere molta qualità?",
+    "opzioni": ["WAV", "MP3", "FLAC", "AAC"],
+    "rispostaCorretta": "MP3",
+    "spiegazione": "MP3 è lossy: comprime riducendo qualità minima percepita, file piccoli. Syllabus 3.1.1[documento][1].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Quale formato immagine usa compressione con perdita di qualità per file piccoli?",
+    "opzioni": ["PNG", "JPEG", "GIF", "SVG"],
+    "rispostaCorretta": "JPEG",
+    "spiegazione": "JPEG (.jpg) comprime lossy riducendo qualità. Ideale web/foto[syllabus p.121][1].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Quale estensione per documenti testo modificabili?",
+    "opzioni": [".pdf", ".docx", ".jpg", ".mp3"],
+    "rispostaCorretta": ".docx",
+    "spiegazione": "Microsoft Word/Open standard. Modificabile[syllabus 3.1.7][documento].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Formato video comune per web?",
+    "opzioni": ["AVI", "MP4", "MOV", "WMV"],
+    "rispostaCorretta": "MP4",
+    "spiegazione": "Compatibile universale, compresso H.264. Syllabus contenuti digitali[documento].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Quale formato immagine senza perdita di dati?",
+    "opzioni": ["JPEG", "PNG", "WEBP", "HEIC"],
+    "rispostaCorretta": "PNG",
+    "spiegazione": "PNG lossless, trasparenze. Syllabus 3.1.1 p.121[documento].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Estensione app mobile Android?",
+    "opzioni": [".apk", ".exe", ".dmg", ".app"],
+    "rispostaCorretta": ".apk",
+    "spiegazione": "Android Package. Contenuti digitali syllabus[documento].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Come salvi documento Word nuovo?",
+    "opzioni": ["File→Salva con nome→Scegli cartella/nome/formato", "Ctrl+S diretto", "Stampa PDF", "Chiudi app"],
+    "rispostaCorretta": "File→Salva con nome→Scegli cartella/nome/formato",
+    "spiegazione": "Primo salvataggio richiede nome/percorso. Syllabus 3.1.7[documento].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Funzione Ctrl+C / Ctrl+V?",
+    "opzioni": ["Copia/Incolla", "Taglia/Incolla", "Annulla", "Salva"],
+    "rispostaCorretta": "Copia/Incolla",
+    "spiegazione": "Operazioni testo base. Syllabus 3.1.8[documento].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Prompt IA testo efficace include?",
+    "opzioni": ["Dettagli specifici + contesto + stile desiderato", "Solo idea generale", "Emoji", "Domanda vaga"],
+    "rispostaCorretta": "Dettagli specifici + contesto + stile desiderato",
+    "spiegazione": "Migliora output. Es. 'Scrivi post Instagram procrastinazione, ispiratore'[syllabus p.124].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Dove trovi linee guida accessibilità digitale?",
+    "opzioni": ["WCAG W3C", "Google Search", "Wikipedia", "YouTube"],
+    "rispostaCorretta": "WCAG W3C",
+    "spiegazione": "Web Content Accessibility Guidelines. Syllabus 3.1.6 https://www.w3.org/WAI/[documento].",
+    "area": "Sezione 3.1"
+  },
+    {
+    "domanda": "Come modifichi testo esistente in Word?",
+    "opzioni": ["Posiziona cursore e digita (inserisci/sovrascrivi)", "Solo cancella tutto", "Copia/incolla nuovo", "Stampa nuova versione"],
+    "rispostaCorretta": "Posiziona cursore e digita (inserisci/sovrascrivi)",
+    "spiegazione": "Inserisci sovrascrivendo caratteri esistenti. Syllabus 3.1/3.2.3[1][4][6].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Comando per annullare ultima azione?",
+    "opzioni": ["Ctrl+Z (Annulla)", "Ctrl+S", "Ctrl+C", "Ctrl+P"],
+    "rispostaCorretta": "Ctrl+Z (Annulla)",
+    "spiegazione": "Ripristina modifiche. Base editing syllabus[4][5][7].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Come applichi grassetto testo selezionato?",
+    "opzioni": ["Ctrl+B o icona B", "Ctrl+I", "Ctrl+U", "Ctrl+E"],
+    "rispostaCorretta": "Ctrl+B o icona B",
+    "spiegazione": "Formattazione carattere. Word processing base[4][7].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Strumento per verificare ortografia?",
+    "opzioni": ["Controllo ortografia/grammatica (F7)", "Trova/Sostituisci", "Sillabazione", "Maiuscole"],
+    "rispostaCorretta": "Controllo ortografia/grammatica (F7)",
+    "spiegazione": "Corregge errori. Syllabus editing[4][5].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Come crei tabella semplice?",
+    "opzioni": ["Inserisci→Tabella→Riga/Colonne", "Digita | | |", "Copia Excel", "Disegno manuale"],
+    "rispostaCorretta": "Inserisci→Tabella→Riga/Colonne",
+    "spiegazione": "Oggetti base documenti. Syllabus 4.1[4].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Funzione copia formato (format painter)?",
+    "opzioni": ["Copia stile da paragrafo ad altro", "Copia testo", "Incolla speciale", "Salva template"],
+    "rispostaCorretta": "Copia stile da paragrafo ad altro",
+    "spiegazione": "Pennello formattazione. Syllabus 3.3.3[4][5].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Come modifichi PDF con Adobe Reader gratuito?",
+    "opzioni": ["Strumenti→Compila e firma→Aggiungi testo", "Solo visualizza", "Stampa nuova", "OCR completo"],
+    "rispostaCorretta": "Strumenti→Compila e firma→Aggiungi testo",
+    "spiegazione": "Modifiche base PDF. Syllabus 3.2.4[documento].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Prompt efficace per immagine IA (DALL-E)?",
+    "opzioni": ["'Ritratto rinascimentale donna fiori giardino'", " 'Immagine bella'", " 'Foto'", " 'Arte'"],
+    "rispostaCorretta": "'Ritratto rinascimentale donna fiori giardino'",
+    "spiegazione": "Dettagli stile/soggetto. Syllabus 3.1.5 p.124[documento].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Strumento verifica accessibilità contenuti?",
+    "opzioni": ["WCAG checker online / WAVE tool", "Google Analytics", "SEO tool", "Antivirus"],
+    "rispostaCorretta": "WCAG checker online / WAVE tool",
+    "spiegazione": "Testa conformità. Syllabus 3.1.6 W3C[documento][1].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Come inserisci immagine documento?",
+    "opzioni": ["Inserisci→Immagini→Da file", "Copia/incolla URL", "Digita nome", "Link ipertestuale"],
+    "rispostaCorretta": "Inserisci→Immagini→Da file",
+    "spiegazione": "Contenuti multimediali base. Syllabus sviluppo digitali[3][6].",
+    "area": "Sezione 3.1"
+  },
+    [
+  {
+    "domanda": "Quale tecnica di prompting IA è utile per risolvere problemi matematici complessi o analizzare scenari aziendali multi-fase?",
+    "opzioni": ["Chain-of-Thought Prompting", "Few-Shot Learning", "Meta-Prompting", "Infinite Generation"],
+    "rispostaCorretta": "Chain-of-Thought Prompting",
+    "spiegazione": "Chain-of-Thought guida l'IA a ragionare passo dopo passo. Ideale problemi complessi/pianificazione progetti[3][5].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Come strutturi un prompt efficace per piano editoriale Instagram?",
+    "opzioni": ["Specifica piattaforma + settore + format + temi + CTA", "Solo 'fai piano'", "Descrizione vaga", "Link articolo"],
+    "rispostaCorretta": "Specifica piattaforma + settore + format + temi + CTA",
+    "spiegazione": "Dettagli guidano output. Es. 'abbigliamento sostenibile, 4 format, call-to-action'[1][2][6].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Tecnica Few-Shot Learning serve per?",
+    "opzioni": ["Fornire esempi per guidare IA (es. risposte clienti)", "Generare immagini", "Tradurre codice", "Creare database"],
+    "rispostaCorretta": "Fornire esempi per guidare IA (es. risposte clienti)",
+    "spiegazione": "Mostra pattern con esempi. Classificazione email/risposte personalizzate[3][5].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Prompt Chaining (concatenazione) è utile per?",
+    "opzioni": ["Analisi multi-fase: estrai dati→analizza→riassumi", "Una sola azione", "Copia/incolla", "Salva file"],
+    "rispostaCorretta": "Analisi multi-fase: estrai dati→analizza→riassumi",
+    "spiegazione": "Catena logica. Es. rapporto finanziario: dati chiave→analisi→executive summary[3][5].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Quale elemento rende un prompt IA più efficace?",
+    "opzioni": ["Chiarezza + specificità + contesto + parole chiave", "Lunghezza massima", "Emoji", "Maiuscole"],
+    "rispostaCorretta": "Chiarezza + specificità + contesto + parole chiave",
+    "spiegazione": "Guida modello IA. Es. 'descrizione dettagliata prodotto' vs 'descrivi'[2][6][8].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Meta-Prompting consente di?",
+    "opzioni": ["IA ottimizza i prompt stessi per risultati migliori", "Cancella prompt", "Copia testo", "Stampa"],
+    "rispostaCorretta": "IA ottimizza i prompt stessi per risultati migliori",
+    "spiegazione": "Tecnica avanzata: IA migliora propri prompt iterativamente[5].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Visualization Generator serve per?",
+    "opzioni": ["Generare testo strutturato (Graphviz/diagrammi) da prompt", "Solo testo", "Audio", "Video"],
+    "rispostaCorretta": "Generare testo strutturato (Graphviz/diagrammi) da prompt",
+    "spiegazione": "Trasforma output IA in visualizzazioni. Schemi/grafi[5].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Recursive Prompt Optimization garantisce?",
+    "opzioni": ["IA segue schema output + si autocorregge se lo viola", "Nessun controllo", "Errori permanenti", "Cancellazione"],
+    "rispostaCorretta": "IA segue schema output + si autocorregge se lo viola",
+    "spiegazione": "Coerenza output. Es. 'sempre: buyer personas→messaggi→CTA→copy'[5].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Meta Language Creation permette di?",
+    "opzioni": ["Definire linguaggio/notazione personalizzata per IA (es. grafi)", "Tradurre lingue", "Creare app", "Disegnare"],
+    "rispostaCorretta": "Definire linguaggio/notazione personalizzata per IA (es. grafi)",
+    "spiegazione": "IA impara simboli custom. Es. 'a → b' = grafo nodi/arco[5].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Infinite Generation tecnica serve per?",
+    "opzioni": ["IA genera risultati continui fino a 'stop' utente", "Una sola risposta", "Pausa automatica", "Errore"],
+    "rispostaCorretta": "IA genera risultati continui fino a 'stop' utente",
+    "spiegazione": "Generazione illimitata. Es. 'continua nomi ruoli B2B finché non scrivo stop'[5].",
+    "area": "Sezione 3.1"
+  },
+ [  {
+    "domanda": "Come integri contenuti IA generativa in lavori professionali?",
+    "opzioni": ["Identifica bisogni→Scegli tool→Personalizza→Integra/adatta→Verifica etica", "Copia/incolla diretto", "Solo testo", "Ignora IA"],
+    "rispostaCorretta": "Identifica bisogni→Scegli tool→Personalizza→Integra/adatta→Verifica etica",
+    "spiegazione": "Processo etico: GPT testi, DALL-E immagini. Syllabus 3.2.6[documento][1][3].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Quale risorsa principale per linee guida accessibilità web?",
+    "opzioni": ["WCAG 2.1/2.2 W3C (https://www.w3.org/WAI/)", "Google Guidelines", "Facebook Standards", "Adobe PDF"],
+    "rispostaCorretta": "WCAG 2.1/2.2 W3C (https://www.w3.org/WAI/)",
+    "spiegazione": "Standard internazionale. Syllabus 3.1.6[documento][1].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Strumenti per verificare accessibilità contenuti digitali?",
+    "opzioni": ["WAVE, Lighthouse, axe DevTools", "Photoshop", "Excel", "Word"],
+    "rispostaCorretta": "WAVE, Lighthouse, axe DevTools",
+    "spiegazione": "Test automatici WCAG. Syllabus 3.1.6 + best practice 2024[1][2].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Principio WCAG 'Percepibile' richiede?",
+    "opzioni": ["Contenuti alternativi testo per non-text (alt immagini, trascrizioni audio)", "Solo colori", "Font grandi", "Solo mobile"],
+    "rispostaCorretta": "Contenuti alternativi testo per non-text (alt immagini, trascrizioni audio)",
+    "spiegazione": "Accessibile screen reader. WCAG 1.1.1[1].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Per migliorare accessibilità video, aggiungi?",
+    "opzioni": ["Sottotitoli, trascrizioni, descrizioni audio", "Solo musica", "Velocità doppia", "No pause"],
+    "rispostaCorretta": "Sottotitoli, trascrizioni, descrizioni audio",
+    "spiegazione": "Per non udenti/ipoudenti. WCAG 1.2.2/1.2.4[1][documento].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Livelli conformità WCAG?",
+    "opzioni": ["A, AA, AAA (crescente rigore)", "1,2,3", "Base, Avanzato", "Mobile, Desktop"],
+    "rispostaCorretta": "A, AA, AAA (crescente rigore)",
+    "spiegazione": "AA standard comune enti pubblici. Syllabus 3.1.6[1].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Quando usi contenuti IA, cita sempre?",
+    "opzioni": ["Fonte IA + prompt usato + modifiche apportate", "Nessuna citazione", "Solo autore", "Data"],
+    "rispostaCorretta": "Fonte IA + prompt usato + modifiche apportate",
+    "spiegazione": "Trasparenza etica. Syllabus 3.2.6 + best practice[documento][3].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Per accessibilità documenti PDF?",
+    "opzioni": ["Tag structure + alt text immagini + lettura logica", "Solo compressione", "Password", "Solo immagini"],
+    "rispostaCorretta": "Tag structure + alt text immagini + lettura logica",
+    "spiegazione": "PDF/UA standard. WCAG PDF[1][2].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Contratto di licenza Creative Commons più permissivo?",
+    "opzioni": ["CC0 (dominio pubblico)", "CC BY-SA", "CC BY-NC", "CC BY-ND"],
+    "rispostaCorretta": "CC0 (dominio pubblico)",
+    "spiegazione": "Nessun diritto riservato. Syllabus 3.3[documento].",
+    "area": "Sezione 3.1"
+  },
+  {
+    "domanda": "Elementi base copyright?",
+    "opzioni": ["Protezione automatica creazione + durata vita autore +70 anni", "Registrazione obbligatoria", "Solo marchi", "Nessuna protezione digitale"],
+    "rispostaCorretta": "Protezione automatica creazione + durata vita autore +70 anni",
+    "spiegazione": "Normativa UE. Syllabus 3.3.1 p.158[documento].",
+    "area": "Sezione 3.1"
+  }       
 ];
 // FINE ARRAY (Assicurati che tutte le domande che inserisci finiscano con la virgola, tranne l'ultima prima della ];)
 
